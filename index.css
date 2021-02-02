@@ -14,7 +14,15 @@
 
 #container {
   background-color: black;
-  height: 70vh;
+  height: 35vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#container1 {
+  background-color: black; 
+  height: 35vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -24,4 +32,23 @@
   height: 200px;
   width: 200px;
   background-color: aliceblue;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: chartreuse;
+}
+
+#tries {
+    background-color: black;
+    color: blue;
+    padding: 0px 50px;
 }

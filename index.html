@@ -3,22 +3,63 @@
 <html>
   <head>
     <title>Color Game</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Potta+One&family=Teko:wght@500&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="./index.css" />
+    <style>
+      h2{
+        font-family: 'Potta One', cursive;
+      
+      }
+      h1{
+        font-family: 'Teko', sans-serif;
+      }
+    </style>
   </head>
   <body onload="newGame()">
     <div id="header">
       <h2>The Great</h2>
-      <h1 id="header-clue">rgb(xxx,xxx,xxx)</h1>
+      <marquee><h1 id="header-clue">rgb(xxx,xxx,xxx)</h1></marquee>
       <h2>Guessing Game</h2>
+      <span id="tries">
+      <h2 id="try">No of Tries : 0</h2>
+      </span>
+      <br>
+      <td>
+        <nobr><button class="button" onclick="window.location.reload(true)">New Game</button>
+        <button class="button" onclick="window.close()">Exit</button></nobr>
+      </td>
+
+      
     </div>
+    
     <div id="container">
       <div class="tile" id="1"></div>
       <div class="tile" id="2"></div>
+      <div class="tile" id="3"></div>
     </div>
+    <div id="container1">
+      <div class="tile" id="4"></div>
+      <div class="tile" id="5"></div>
+      <div class="tile" id="6"></div>
+    </div>
+  </div>
 
     <script>
+
+      function ng()
+      {
+
+      }
       var t1 = document.getElementById("1");
       var t2 = document.getElementById("2");
+      var t3 = document.getElementById("3");
+      var t4 = document.getElementById("4");
+      var t5 = document.getElementById("5");
+      var t6 = document.getElementById("6");
+      let t = [t1,t2,t3,t4,t5,t6]
+
+      var y = 0;
       var x;
       var correctColor;
 
@@ -32,36 +73,45 @@
       }
 
       function newGame() {
-        t1.style.background = getRandomColor();
-        t2.style.background = getRandomColor();
-
-        x = Math.floor(Math.random() * 2 + 1);
+        for(let i=0;i<t.length;i++)
+        {
+        t[i].style.background = getRandomColor();
+        }
+  
+        x = Math.floor(Math.random() * 6 + 1);
 
         if (x == 1) correctColor = t1.style.background;
-        else correctColor = t2.style.background;
+        else if (x==2) correctColor =t2.style.background
+        else if (x==3) correctColor =t3.style.background
+        else if (x==4) correctColor =t4.style.background
+        else if (x==5) correctColor =t5.style.background
+        else correctColor = t6.style.background;
+        
         /* console.log(x);
         console.log(correctColor); */
 
         document.getElementById("header-clue").innerHTML = correctColor;
       }
-
-      t1.addEventListener("click", function () {
-        if (t1.style.background == correctColor) {
-          t2.style.background = correctColor;
+      for(let k=0;k<t.length;k++)
+      {
+      t[k].addEventListener("click", function () {
+        if (t[k].style.background == correctColor) {
+          for(let m=0;m<t.length;m++)
+          {
+          t[m].style.background = correctColor;
+          }
+          y= y+1;
+          document.getElementById("try").innerHTML = "No of Tries : " + y ;
           document.getElementById("header").style.background = correctColor;
-        } else {
-          t1.style.background = "black";
         }
-      });
-
-      t2.addEventListener("click", function () {
-        if (t2.style.background == correctColor) {
-          t1.style.background = correctColor;
-          document.getElementById("header").style.background = correctColor;
-        } else {
-          t2.style.background = "black";
-        }
-      });
+          else {
+          t[k].style.background = "black";
+          y= y+1;
+          document.getElementById("try").innerHTML = "No of Tries : " + y ;
+          }
+        });
+      }
     </script>
   </body>
 </html>
+
